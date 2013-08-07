@@ -12,12 +12,44 @@ public class RJSearchOBJ implements Comparable<RJSearchOBJ>{
 		UP,
 		DOWN
 	};
+
+	private RJSearchOBJ parent = null;
+	private Point current;
+	private Point source;
+	private Point target;
+	private int changeDirections = 0;
+	private int gSum = 0;
+	private Direction dire = null;
 	
-	public Point getParent() {
+	public Direction getDire() {
+		return dire;
+	}
+
+	public void setDire(Direction dire) {
+		this.dire = dire;
+	}
+
+	public RJSearchOBJ(RJSearchOBJ father, Point cur, Point from, Point to) {
+		parent = father;
+		current = cur;
+		source = from;
+		target = to;
+	}
+	
+	public void setGSum(int g) {
+		gSum = g;
+	}
+	
+	public int getGSum() {
+		return gSum;
+	}
+	
+	
+	public RJSearchOBJ getParent() {
 		return parent;
 	}
 
-	public void setParent(Point parent) {
+	public void setParent(RJSearchOBJ parent) {
 		this.parent = parent;
 	}
 
@@ -35,28 +67,6 @@ public class RJSearchOBJ implements Comparable<RJSearchOBJ>{
 
 	public void setChangeDirections(int changeDirections) {
 		this.changeDirections = changeDirections;
-	}
-
-	private Point parent;
-	private Point current;
-	private Point source;
-	private Point target;
-	private int changeDirections = 0;
-	private int gSum = 0;
-	
-	public RJSearchOBJ(Point father, Point cur, Point from, Point to) {
-		parent = father;
-		current = cur;
-		source = from;
-		target = to;
-	}
-	
-	public void setGSum(int g) {
-		gSum = g;
-	}
-	
-	public int getGSum() {
-		return gSum;
 	}
 	
 	/**
@@ -112,4 +122,34 @@ public class RJSearchOBJ implements Comparable<RJSearchOBJ>{
 	public int compareTo(RJSearchOBJ another) {
 		return (fFun() - another.fFun());
 	}
+
+	public Point getSource() {
+		return source;
+	}
+
+	public void setSource(Point source) {
+		this.source = source;
+	}
+
+	public Point getTarget() {
+		return target;
+	}
+
+	public void setTarget(Point target) {
+		this.target = target;
+	}
+
+	@Override
+	public boolean equals(Object another) {
+		return current.equals(((RJSearchOBJ)another).getCurrent());
+	}
+
+	public boolean isTarget() {
+		return current.equals(target) && isValid();
+	}
+
+	public boolean isValid() {
+		return (this.changeDirections <= MAX_CHANGE);
+	}
+	
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.rj.rjmathlinkgame.core.RJSearchOBJ.Direction;
+import com.rj.rjmathlinkgame.view.RJItem;
+
 import android.graphics.Point;
 
 public class RJDaemonService {
@@ -91,6 +94,8 @@ public class RJDaemonService {
 		Point sPoint = source.getCenter();
 		Point tPoint = target.getCenter();
 		
+		return AStarSearch(sPoint, tPoint);
+		/*
 		//horizon
 		if (sPoint.y == tPoint.y) {
 			return horizonLink(sPoint, tPoint);
@@ -107,6 +112,7 @@ public class RJDaemonService {
 		}
 		
 		return linkPoints;
+		*/
 	}
 	
 	/**
@@ -115,37 +121,61 @@ public class RJDaemonService {
 	 * @param target
 	 * @return
 	 */
-	private boolean extend (RJSearchOBJ obj, Point target) {
-		List<Point> next = getNextPoints(obj.getCurrent());
-		//TODO generate proper obj to the will list
-		return false;
+	private void extend (RJSearchOBJ obj, Point target) {
+		List<RJSearchOBJ> nexts = getNextSearchOBJs(obj);
+		for (RJSearchOBJ next : nexts) {
+			if(!has.contains(next) && will.contains(next) && next.isValid()) {
+				will.add(next);
+			}
+		}
 	}
 	
-	private List<Point> getNextPoints(Point current) {
-		List<Point> next = new ArrayList<Point>();
-		int x = current.x;
-		int y = current.y;
+	/**
+	 * return current point's next search points list
+	 * @param current
+	 * @return
+	 */
+	private List<RJSearchOBJ> getNextSearchOBJs(RJSearchOBJ current) {
+		List<RJSearchOBJ> next = new ArrayList<RJSearchOBJ>();
+		int x = current.getCurrent().x;
+		int y = current.getCurrent().y;
 		if ( (x-1) == -1 || ( (x-1) >= 0 && mapDatas[x-1][y] == 0) ) {
 			Point left = new Point(x-1, y);
-			next.add(left);
+			RJSearchOBJ obj = new RJSearchOBJ(current, left, current.getSource(), current.getTarget());
+			obj.setDire(Direction.LEFT);
+			if (current.getDire() != null && obj.getDire() != current.getDire())
+				obj.setChangeDirections(current.getChangeDirections() + 1);
+			next.add(obj);
 		}
 		if ( (x+1) == config.getColumn() || ( (x+1) < config.getColumn() && mapDatas[x+1][y] == 0) ) {
 			Point right = new Point(x+1, y);
-			next.add(right);
+			RJSearchOBJ obj = new RJSearchOBJ(current, right, current.getSource(), current.getTarget());
+			obj.setDire(Direction.RIGHT);
+			if (current.getDire() != null && obj.getDire() != current.getDire())
+				obj.setChangeDirections(current.getChangeDirections() + 1);
+			next.add(obj);
 		}
 		if ( (y+1) == config.getRow() || ( (y+1) < config.getRow() && mapDatas[x][y+1] == 0)) {
 			Point up = new Point(x, y+1);
-			next.add(up);
+			RJSearchOBJ obj = new RJSearchOBJ(current, up, current.getSource(), current.getTarget());
+			obj.setDire(Direction.UP);
+			if (current.getDire() != null && obj.getDire() != current.getDire())
+				obj.setChangeDirections(current.getChangeDirections() + 1);
+			next.add(obj);
 		}
 		if ( (y-1) == -1 || ((y-1) >= 0 && mapDatas[x][y-1] == 0) ) {
 			Point down = new Point (x, y-1);
-			next.add(down);
+			RJSearchOBJ obj = new RJSearchOBJ(current, down, current.getSource(), current.getTarget());
+			obj.setDire(Direction.DOWN);
+			if (current.getDire() != null && obj.getDire() != current.getDire())
+				obj.setChangeDirections(current.getChangeDirections() + 1);
+			next.add(obj);
 		}
 	
 		return next;
 	}
 
-	private LinkPoints ASearch(Point sPoint, Point tPoint) {
+	private LinkPoints AStarSearch(Point sPoint, Point tPoint) {
 		RJSearchOBJ start = new RJSearchOBJ(null, sPoint, sPoint,  tPoint);
 		addToWill(start);
 		while(true) {
@@ -153,12 +183,27 @@ public class RJDaemonService {
 			if (obj == null) {
 				return null;
 			} 
+			if (obj.isTarget()) {
+				return getLinkPoints(obj);
+			}
 			extend(obj, tPoint);
 			addToHas(obj);
 		}
 		
 	}
 	
+	private LinkPoints getLinkPoints(RJSearchOBJ obj) {
+		LinkPoints ret = new LinkPoints();
+		RJSearchOBJ cur = obj;
+		RJSearchOBJ pre = obj.getParent();
+		while (pre != null) {
+			ret.addPoint(pre.getCurrent(), cur.getCurrent());
+			cur = pre;
+			pre = cur.getParent();
+		}
+		return ret;
+	}
+
 	private void addToHas(RJSearchOBJ obj) {
 		if (!has.contains(obj)) 
 			has.add(obj);
@@ -177,17 +222,6 @@ public class RJDaemonService {
 	}
 
 	private LinkPoints twoCornerLink(Point sPoint, Point tPoint) {
-		//same vertical
-		if (sPoint.x == tPoint.x) {
-			
-		}
-		
-		//same horizon
-		if (sPoint.y == tPoint.y) {
-			
-		}
-		
-		
 		return null;
 	}
 

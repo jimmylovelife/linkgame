@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.rj.rjmathlinkgame"
+    style="@style/FullscreenTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bt_turnip"
+        style="@style/ButtonBar"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="113dp"
+        android:background="@color/black_overlay"
+        android:text="花心大萝卜" />
+
+    <Button
+        android:id="@+id/bt_mahjong"
+        style="@style/ButtonBar"
+        android:background="@color/black_overlay"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/bt_turnip"
+        android:layout_below="@+id/bt_turnip"
+        android:layout_marginTop="47dp"
+        android:text="四川麻将" />
+
+    <Button
+        android:id="@+id/bt_brainstorm"
+        style="@style/ButtonBar"
+        android:background="@color/black_overlay"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/bt_mahjong"
+        android:layout_below="@+id/bt_mahjong"
+        android:layout_marginTop="59dp"
+        android:text="头脑风暴" />
+
+</RelativeLayout>
