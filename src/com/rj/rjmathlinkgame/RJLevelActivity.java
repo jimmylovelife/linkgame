@@ -19,11 +19,24 @@ public class RJLevelActivity extends Activity {
 	private BaseAdapter levelAdapter;
 	private GridView view;
 
+	//TODO make grey and not clickable
 	private AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View clickView, int position,
 				long arg3) {
-			levelAdapter.getItem(position);
+			
+			RJLevelItem selected = (RJLevelItem) levelAdapter.getItem(position);
+			//RJLevelItem preLevel = (RJLevelItem) levelAdapter.getItem(position - 1);
+			if (selected != null && selected.canPlay()) {
+				Intent intent = new Intent(RJLevelActivity.this, RJGameMainView.class);
+				Bundle bundle = new Bundle();
+				bundle.putParcelable("config", selected.getConf());
+				intent.putExtra("bestTime", selected.getBestTime());
+				intent.putExtras(bundle);
+				startActivity(intent);
+			} else {
+				//do nothing
+			}
 		}
 	};
 
@@ -32,11 +45,12 @@ public class RJLevelActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rj_level_list);
 		view = (GridView) findViewById(R.id.level_list_grid);
-
+		view.setOnItemClickListener(clickListener);
+		
 		Intent intent = this.getIntent();
 		String type = intent.getStringExtra("type");
 		setGameClass(type);
-
+		
 		setContentViewByType();
 	}
 
