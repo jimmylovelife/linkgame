@@ -28,11 +28,12 @@ public class RJLevelActivity extends Activity {
 			RJLevelItem selected = (RJLevelItem) levelAdapter.getItem(position);
 			//RJLevelItem preLevel = (RJLevelItem) levelAdapter.getItem(position - 1);
 			if (selected != null && selected.canPlay()) {
-				Intent intent = new Intent(RJLevelActivity.this, RJGameMainView.class);
+				Intent intent = new Intent(RJLevelActivity.this, RJGameActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putParcelable("config", selected.getConf());
 				intent.putExtra("bestTime", selected.getBestTime());
 				intent.putExtras(bundle);
+
 				startActivity(intent);
 			} else {
 				//do nothing

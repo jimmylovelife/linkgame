@@ -1,6 +1,5 @@
 package com.rj.rjmathlinkgame.core;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -11,10 +10,10 @@ public class RJConfig implements Parcelable{
 	
 	private static final int DEFAULT_BEGIN_X = 2;
 	private static final int DEFAULT_BEGIN_Y = 10;
-	private static final int DEFAULT_LEVEL_TIME = 10000;
+	private static final long DEFAULT_LEVEL_TIME = 10000;
 	private static final int FACTOR = 50;
-	private static final int DEFAULT_COLUMNS = 0;
-	private static final int DEFAULT_ROWS = 0;
+	private static final int DEFAULT_COLUMNS = 6;
+	private static final int DEFAULT_ROWS = 10;
 
 	private int row;
 	private int column;
@@ -68,13 +67,13 @@ public class RJConfig implements Parcelable{
 		return beginY;
 	}
 
-	public long getRtime() {
+	public long getTime() {
 		return time;
 	}
 	
 	//TODO increase the columns & rows by the position
 	public static RJConfig getTurnipConfig(int level) {
-		int gameTime = DEFAULT_LEVEL_TIME;
+		long gameTime = DEFAULT_LEVEL_TIME;
 		gameTime -= FACTOR * level;
 		
 		return new RJConfig(DEFAULT_COLUMNS, DEFAULT_ROWS, gameTime);

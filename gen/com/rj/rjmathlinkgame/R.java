@@ -23,19 +23,62 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int m_0=0x7f020001;
+        public static final int m_1=0x7f020002;
+        public static final int m_10=0x7f020003;
+        public static final int m_11=0x7f020004;
+        public static final int m_12=0x7f020005;
+        public static final int m_13=0x7f020006;
+        public static final int m_14=0x7f020007;
+        public static final int m_15=0x7f020008;
+        public static final int m_16=0x7f020009;
+        public static final int m_17=0x7f02000a;
+        public static final int m_18=0x7f02000b;
+        public static final int m_19=0x7f02000c;
+        public static final int m_2=0x7f02000d;
+        public static final int m_20=0x7f02000e;
+        public static final int m_21=0x7f02000f;
+        public static final int m_22=0x7f020010;
+        public static final int m_23=0x7f020011;
+        public static final int m_24=0x7f020012;
+        public static final int m_25=0x7f020013;
+        public static final int m_26=0x7f020014;
+        public static final int m_27=0x7f020015;
+        public static final int m_28=0x7f020016;
+        public static final int m_29=0x7f020017;
+        public static final int m_3=0x7f020018;
+        public static final int m_30=0x7f020019;
+        public static final int m_31=0x7f02001a;
+        public static final int m_32=0x7f02001b;
+        public static final int m_33=0x7f02001c;
+        public static final int m_34=0x7f02001d;
+        public static final int m_35=0x7f02001e;
+        public static final int m_36=0x7f02001f;
+        public static final int m_37=0x7f020020;
+        public static final int m_38=0x7f020021;
+        public static final int m_39=0x7f020022;
+        public static final int m_4=0x7f020023;
+        public static final int m_40=0x7f020024;
+        public static final int m_41=0x7f020025;
+        public static final int m_5=0x7f020026;
+        public static final int m_6=0x7f020027;
+        public static final int m_7=0x7f020028;
+        public static final int m_8=0x7f020029;
+        public static final int m_9=0x7f02002a;
     }
     public static final class id {
-        public static final int bt_brainstorm=0x7f070007;
-        public static final int bt_mahjong=0x7f070006;
-        public static final int bt_turnip=0x7f070005;
-        public static final int button1=0x7f070002;
-        public static final int button2=0x7f070003;
-        public static final int button4=0x7f070004;
+        public static final int bt_brainstorm=0x7f070008;
+        public static final int bt_mahjong=0x7f070007;
+        public static final int bt_prompt=0x7f070003;
+        public static final int bt_refresh=0x7f070002;
+        public static final int bt_start=0x7f070005;
+        public static final int bt_turnip=0x7f070006;
+        public static final int button1=0x7f070004;
         public static final int fullscreen_content_controls=0x7f070001;
-        public static final int levelIcon=0x7f070008;
-        public static final int levelNum=0x7f070009;
-        public static final int level_list_grid=0x7f07000a;
-        public static final int textView1=0x7f070000;
+        public static final int gameView=0x7f070000;
+        public static final int levelIcon=0x7f070009;
+        public static final int levelNum=0x7f07000a;
+        public static final int level_list_grid=0x7f07000b;
     }
     public static final class layout {
         public static final int rj_game_view=0x7f030000;

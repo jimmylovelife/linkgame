@@ -10,12 +10,10 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <com.rj.rjmathlinkgame.view.RJGameView
+            android:id="@+id/gameView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
         <RelativeLayout
             android:id="@+id/fullscreen_content_controls"
             style="?buttonBarStyle"
@@ -27,13 +25,13 @@
             tools:ignore="UselessParent" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/bt_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Refresh" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/bt_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -41,7 +39,7 @@
                 android:text="Prompt" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/bt_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

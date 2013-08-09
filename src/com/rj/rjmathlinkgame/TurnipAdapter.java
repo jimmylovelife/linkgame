@@ -39,7 +39,8 @@ public class TurnipAdapter extends BaseAdapter {
 	}
 
 	private void parse(String levelString) {
-		int index = 1, flag, bestTime;
+		int index = 1, flag;
+		long bestTime;
 		if (levelString != null) {
 			String[] strs = levelString.split(" ");
 			String[] pair;
@@ -47,7 +48,7 @@ public class TurnipAdapter extends BaseAdapter {
 				pair = str.split(",");
 				if (pair.length == 2) {
 					flag = Integer.parseInt(pair[0]);
-					bestTime = Integer.parseInt(pair[1]);
+					bestTime = Long.decode(pair[1]);
 					levels.add(new RJLevelItem(RJConfig.getTurnipConfig(index), bestTime, (flag==1), index, true));
 				}
 				index++;

@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+
 import com.rj.rjmathlinkgame.core.RJSearchOBJ.Direction;
 import com.rj.rjmathlinkgame.view.RJItem;
 
-import android.graphics.Point;
-
 public class RJDaemonService {
 	RJConfig config;
+	BitmapSets bitmapSets = null;
+	Context ctx;
 	private RJItem[][] items;
 	private int[][] mapDatas;
 	private int itemNum;
@@ -22,20 +26,47 @@ public class RJDaemonService {
 	 * @param row
 	 * @param column
 	 */
-	public RJDaemonService(RJConfig conf) {
+	public RJDaemonService(RJConfig conf, Context ctx) {
 		config = conf;
+		this.ctx = ctx;
+		bitmapSets = BitmapSets.getInstance(ctx);
 	}
 
 	/**
 	 * create the items and shuttle it
 	 */
 	public void startGame() {
-		items = new RJItem[config.getRow()][config.getColumn()];
-		mapDatas = new int[config.getRow()][config.getColumn()];
+		items = new RJItem[config.getColumn()][config.getRow()];
+		generateItems();
+		mapDatas = new int[config.getColumn()][config.getRow()];
 		int i,j;
 		for (i = 0; i < config.getRow(); i++)
 			for (j = 0; j < config.getColumn(); j++) 
-				mapDatas[i][j] = 1;
+				mapDatas[j][i] = 1;
+	}
+
+	private void generateItems() {
+		int len = config.getColumn() * config.getRow();
+		int size = len/2;
+		List<Bitmap> images = new ArrayList<Bitmap> ();
+		for (int i=0; i<size; i++) {
+			images.add(bitmapSets.getMBitmap());
+		}
+		images.addAll(images);
+		Collections.shuffle(images);
+		
+		int x, y, index=0;
+		int xpos = config.getBeginY();
+		int ypos = config.getBeginX();
+		
+		for (y=0; y<config.getRow(); y++) {
+			for (x=0; x<config.getColumn(); x++) {
+				xpos += RJConfig.RJITEM_WIDTH;
+				RJItem item = new RJItem(new Point(xpos, ypos), images.get(index++));
+				items[x][y] = item;
+			}
+			ypos += RJConfig.RJITEM_HEIGHT;
+		}
 	}
 
 	public RJItem[][] getRJItems() {
