@@ -56,15 +56,17 @@ public class RJDaemonService {
 		Collections.shuffle(images);
 		
 		int x, y, index=0;
-		int xpos = config.getBeginY();
-		int ypos = config.getBeginX();
+		int xpos = config.getBeginX() + RJConfig.RJITEM_WIDTH/2;
+		int ypos = config.getBeginY() + RJConfig.RJITEM_HEIGHT/2;
+		int tempx = xpos;
 		
 		for (y=0; y<config.getRow(); y++) {
 			for (x=0; x<config.getColumn(); x++) {
-				xpos += RJConfig.RJITEM_WIDTH;
-				RJItem item = new RJItem(new Point(xpos, ypos), images.get(index++));
+				RJItem item = new RJItem(new Point(tempx, ypos), images.get(index++));
 				items[x][y] = item;
+				tempx += RJConfig.RJITEM_WIDTH;
 			}
+			tempx = xpos; 
 			ypos += RJConfig.RJITEM_HEIGHT;
 		}
 	}
@@ -93,6 +95,7 @@ public class RJDaemonService {
 
 		int indexX = getIndex(innerX, RJConfig.RJITEM_WIDTH);
 		int indexY = getIndex(innerY, RJConfig.RJITEM_HEIGHT);
+		System.out.println("index x " + indexX + " index Y " + indexY);
 		if (indexX < 0 || indexY < 0)
 			return null;
 

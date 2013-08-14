@@ -86,6 +86,7 @@ public class RJGameActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				//TODO deal the clicked different condition
 				startGame();
 			}
 		});

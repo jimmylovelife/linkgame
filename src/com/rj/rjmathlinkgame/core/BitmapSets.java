@@ -7,6 +7,7 @@ import java.util.Random;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 import com.rj.rjmathlinkgame.R;
 
@@ -33,10 +34,13 @@ public class BitmapSets {
 		public void run() {
 			int i;
 			int start = R.drawable.m_0;
+			Matrix matrix = new Matrix();
+			matrix.postScale(0.5f, 0.3125f);
 			synchronized(M_lock) {
 				for (i=0; i<M_SIZE; i++) {
 					Bitmap obj = BitmapFactory.decodeResource(ctx.getResources(), start);
-					M_sets.add(obj);
+					Bitmap target = Bitmap.createBitmap(obj, 0, 0, obj.getWidth(), obj.getHeight(), matrix, true);
+					M_sets.add(target);
 					start++;
 				}
 			}

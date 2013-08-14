@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 public class RJConfig implements Parcelable{
 	
-	public static final int RJITEM_WIDTH = 40;
-	public static final int RJITEM_HEIGHT = 40;
+	public static final int RJITEM_WIDTH = 128;
+	public static final int RJITEM_HEIGHT = 80;
 	
 	private static final int DEFAULT_BEGIN_X = 2;
 	private static final int DEFAULT_BEGIN_Y = 10;

@@ -67,18 +67,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int m_9=0x7f02002a;
     }
     public static final class id {
-        public static final int bt_brainstorm=0x7f070008;
-        public static final int bt_mahjong=0x7f070007;
+        public static final int bt_brainstorm=0x7f070007;
+        public static final int bt_mahjong=0x7f070006;
         public static final int bt_prompt=0x7f070003;
         public static final int bt_refresh=0x7f070002;
-        public static final int bt_start=0x7f070005;
-        public static final int bt_turnip=0x7f070006;
-        public static final int button1=0x7f070004;
+        public static final int bt_start=0x7f070004;
+        public static final int bt_turnip=0x7f070005;
         public static final int fullscreen_content_controls=0x7f070001;
         public static final int gameView=0x7f070000;
-        public static final int levelIcon=0x7f070009;
-        public static final int levelNum=0x7f07000a;
-        public static final int level_list_grid=0x7f07000b;
+        public static final int levelIcon=0x7f070008;
+        public static final int levelNum=0x7f070009;
+        public static final int level_list_grid=0x7f07000a;
     }
     public static final class layout {
         public static final int rj_game_view=0x7f030000;
